@@ -22,6 +22,7 @@
  * 2019-08-08 TC moOde 6.0.0
  *
  */
+opcache_reset();
 require_once dirname(__FILE__) . '/inc/playerlib.php';
 require_once dirname(__FILE__) . '/inc/timezone.php';
 require_once dirname(__FILE__) . '/inc/language.php';

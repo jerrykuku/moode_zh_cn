@@ -1,0 +1,100 @@
+﻿<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->
+
+<div>
+	<h4>页面导航</h4>
+	<p>
+		此UI包括两部分: 音乐库和设置. 音乐库有四个视图，包括电台，文件夹，标签和专辑以及用于控制播放的播放栏.
+		通过点击封面或条形图标，可以在Playbar和全屏播放之间切换. 可通过主菜单访问设置页面.
+	</p>
+
+	<h4>特殊按钮</h4>
+	<p>
+		大多数按钮的功能是不言自明的，但有几个按钮具有特殊功能.
+	</p>
+
+	<ul style="list-style:none;">
+		<li><i class="far fa-tv sx"></i>
+			<span class="quickhelp"> CoverView</span>
+			<span class="help-block">Display full screen CoverView screen saver. Tapping the cover in CoverView displays play controls. Tapping anywhere else dismisses CoverView.</span>
+		</li>
+		<li><i class="far fa-random sx"></i>
+			<span class="quickhelp"> Random</span>
+			<span class="help-block">如果打开Auto-shuffle（请参阅音频配置），则随机播放列表中的随机曲目（默认）或整个音乐库.</span>
+		</li>
+		<li><i class="far fa-arrow-down sx"></i>
+			<span class="quickhelp"> Consume</span>
+			<span class="help-block">完成播放后，从播放列表中删除曲目.当打开Auto-shuffle时,将自动启用Consume模式.</span>
+		</li>
+		<li><i class="far fa-repeat sx"></i>
+			<span class="quickhelp"> Repeat</span>
+			<span class="help-block">重复播放列表或单曲循环.</span>
+		</li>
+		<li><i class="far fa-redo sx"></i>
+			<span class="quickhelp"> Single</span>
+			<span class="help-block">与Repeat一起使用时可以单曲循环.</span>
+		</li>
+		<li><i class="far fa-exchange-alt sx"></i>
+			<span class="quickhelp"> Last track</span>
+			<span class="help-block">在当前播放的曲目和之前播放的曲目之间切换.</span>
+		</li>
+		<li><i class="far fa-dot-circle sx"></i>
+			<span class="quickhelp"> Random album</span>
+			<span class="help-block">在全屏播放时立即随机播放专辑,或者在“Library Tag”或“Album view”中随机选择专辑进行播放.</span>
+		</li>
+		<li><i class="far fa-heart sx"></i>
+			<span class="quickhelp"> Favorite</span>
+			<span class="help-block">将播放列表中当前选定的曲目添加到“收藏”播放列表.播放列表列在音乐库中.</span>
+		</li>
+	</ul>
+
+	<h4>活动元素</h4>
+	<p>
+		UI中有几个非按钮元素，在点击时执行操作.
+	</p>
+	<div style="margin-left:25px;">
+		<ul>
+			<li><span class="quickhelp"> Instant Play</span>
+				<span class="help-block">通过执行“清除/播放”或“添加/播放”，根据“音乐库”选项中的“即时播放”操作设置，点击“音乐库”或“专辑”视图中的封面即可立即播放该项目.</span>
+			</li>
+			<li><span class="quickhelp"> Renderer Active screens</span>
+				<span class="help-block">点击蓝牙中心的标题,模拟输入或S/PDIF输入Active,将启动其各自的配置页面，允许更改输入/输出设置.</span>
+			</li>
+			<li><span class="quickhelp"> Time knob</span>
+				<span class="help-block">在播放歌曲文件时点击时间将向上或向下切换时间计数.点击或拖动时间环将向前或向后移动播放时间.</span>
+			</li>
+			<li><span class="quickhelp"> Volume knob</span>
+				<span class="help-block">点击数字音量级别可切换静音状态.在音量环上向前敲击会使音量增加10.轻按(- +)按钮可将音量调节1步.</span>
+			</li>
+			<li><span class="quickhelp"> Song title</span>
+				<span class="help-block">在Playback中点击封面下方的歌曲标题会在单独的浏览器页面中启动Google搜索.在智能手机上,播放列表会滚动到该曲目.</span>
+			</li>
+			<li><span class="quickhelp"> Artist - Album or Radio Station</span>
+				<span class="help-block">点击艺术家-专辑或电台名称将切换到标签或电台视图中的播放栏.在标签视图中,应用了艺术家过滤器.在电台视图中,列表滚动到该电台.</span>
+			</li>
+			<li><span class="quickhelp"> Swipe gestures</span>
+				<span class="help-block">在智能手机上,向上滑动会将播放列表滚动到视图中,然后点击Playbar封面,会返回播放. 在音乐库标签视图中,侧滑会显示/隐藏“Genres”列.</span>
+			</li>
+		</ul>
+	</div>
+</div>

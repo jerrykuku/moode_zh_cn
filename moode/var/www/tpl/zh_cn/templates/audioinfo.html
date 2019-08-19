@@ -1,0 +1,112 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-08-08 TC moOde 6.0.0
+ *
+ */
+-->
+<div id="container-audioinfo">
+	<div>
+		<strong>输入/输出</strong>
+		<table style="table-layout:fixed; border-collapse:collapse; width:100%;">
+			<col span="1" style="width:110px;">
+			<tr>
+				<td style="text-align:right;">音源:&nbsp;</td>
+				<td style="text-align:left;">$file</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">编码为:&nbsp;</td>
+				<td style="text-align:left;">$encoded_at</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">解码为:&nbsp;</td>
+				<td style="text-align:left;">$decoded_to$decode_rate</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">输出设备:&nbsp;</td>
+				<td style="text-align:left;">$output_destination</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">输出码率:&nbsp;</td>
+				<td style="text-align:left;">$hwparams_format$hwparams_calcrate</td>
+			</tr>
+		</table>
+
+		<strong>数字信号处理</strong>
+		<table style="table-layout:fixed; border-collapse:collapse; width:100%;">
+			<col span="1" style="width:110px;">
+			<tr>
+				<td style="text-align:right;">音量&nbsp;</td>
+				<td style="text-align:left;">$volume_ctl</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">采样率:&nbsp;</td>
+				<td style="text-align:left;">$resampler_format$resampler_quality</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">极性反转:&nbsp;</td>
+				<td style="text-align:left;">$polarity_inv</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">淡入淡出:&nbsp;</td>
+				<td style="text-align:left;">$crossfade</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">交叉给送:&nbsp;</td>
+				<td style="text-align:left;">$crossfeed</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">参量均衡:&nbsp;</td>
+				<td style="text-align:left;">$peq</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">图形均衡:&nbsp;</td>
+				<td style="text-align:left;">$geq</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">回放增益:&nbsp;</td>
+				<td style="text-align:left;">$replaygain</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">音量常量化:&nbsp;</td>
+				<td style="text-align:left;">$vol_normalize</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">芯片选项:&nbsp;</td>
+				<td style="text-align:left;">$chip_options</td>
+			</tr>
+		</table>
+
+		<strong>音频设备</strong>
+		<table style="table-layout:fixed; border-collapse:collapse; width:100%;">
+			<col span="1" style="width:110px;">
+			<tr>
+				<td style="text-align:right;">设备:&nbsp;</td>
+				<td style="text-align:left;">$devname</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">芯片:&nbsp;</td>
+				<td style="text-align:left;">$dacchip</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">接口:&nbsp;</td>
+				<td style="text-align:left;">$iface</td>
+			</tr>
+		</table>
+	</div>
+</div>

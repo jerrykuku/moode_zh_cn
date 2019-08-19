@@ -1,0 +1,146 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-08-08 TC moOde 6.0.0
+ *
+ */
+-->
+<div class="container">
+<div class="container2">
+	<h1 class="lib-config">媒体库选项</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存: 更新媒体库选项。<br>
+            </span>
+		</legend>
+
+		<fieldset>
+	    	<legend>选项</legend>
+			<div class="control-group">
+				<label class="control-label" for="library_instant_play">即时播放动作</label>
+				<div class="controls">
+					<select id="library_instant_play" class="input-large" name="config[library_instant_play]">
+						$_select[library_instant_play]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_instant_play" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_instant_play" class="help-block-configs help-block-margin hide">
+						此选项确定即时播放是执行“清除并播放”还是“添加并播放”。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="show_genres">显示类型列</label>
+				<div class="controls">
+					<select id="show_genres" class="input-large" name="config[show_genres]">
+						$_select[show_genres]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_show_genres" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_show_genres" class="help-block-configs help-block-margin hide">
+						在“媒体库标签”视图中显示“类型”项目。
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="ignore_articles">忽略内容</label>
+				<div class="controls">
+					<input class="input-large" type="text" pattern="^\S*$" id="ignore_articles" name="config[ignore_articles]" value="$_select[ignore_articles]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_ignore_articles" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_ignore_articles" class="help-block-configs help-block-margin hide">
+						指定排序时要忽略的以逗号分隔的内容列表，其中不允许嵌入空格。<br>
+						备注：空白列表将被视为“无”并将立刻禁用该选项。
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="library_utf8rep">UTF8字符过滤器</label>
+				<div class="controls">
+					<select id="library_utf8rep" class="input-large" name="config[library_utf8rep]">
+						$_select[library_utf8rep]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_utf8rep" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_utf8rep" class="help-block-configs help-block-margin hide">
+						许多中文歌曲和歌曲目录都有非UTF8编码的字符，导致媒体库加载程序失败；用符合UTF8的字符替换非UTF8字符可以解决此问题。<br>
+						备注：设置为“是"将影响媒体库加载的效率。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="library_hiresthm">高分辨率缩略图</label>
+				<div class="controls">
+					<select id="library_hiresthm" class="input-large" name="config[library_hiresthm]">
+						$_select[library_hiresthm]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_hiresthm" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_hiresthm" class="help-block-configs help-block-margin hide">
+						设定缩略图生成器输出适合大型显示器或高DPI（Retina）屏幕的高分辨率图像；自动设置将使用设备的像素比率来确定最佳图像大小和质量，同时保持最小的文件大小；手动设置将以75%的品质生成指定大小的图像。<br>
+						备注: 较大的图像可能会导致缩略图加载到“专辑封面”面板的速度变慢。<br>
+					</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="library_covsearchpri">封面搜索优先级</label>
+				<div class="controls">
+					<select id="library_covsearchpri" class="input-large" name="config[library_covsearchpri]">
+						$_select[library_covsearchpri]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_covsearchpri" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_covsearchpri" class="help-block-configs help-block-margin hide">
+						此选项将确定封面提取器首先抓取”嵌入式封面图样“还是”封面图像文件“。<br>
+                    </span>
+				</div>
+			</div>
+
+			<!-- FOR FUTURE USE -->
+			<div class="control-group hide">
+				<label class="control-label" for="library_artist_sort">艺术家排序标签</label>
+				<div class="controls">
+					<select id="library_artist_sort" class="input-large" name="config[library_artist_sort]">
+						$_select[library_artist_sort]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_artist_sort" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_artist_sort" class="help-block-configs help-block-margin hide">
+						指定用于填充艺术家列表的标记，如果歌曲文件中不存在该标签，则将使用艺术家标签。
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group hide">
+				<label class="control-label" for="library_album_sort">专辑列表排序</label>
+				<div class="controls">
+					<select id="library_album_sort" class="input-large" name="config[library_album_sort]">
+						$_select[library_album_sort]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_library_album_sort" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_library_album_sort" class="help-block-configs help-block-margin hide">
+						指定用于填充“专辑”列表的标记，如果歌曲文件中不存在该标签，则将使用专辑标签.
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>

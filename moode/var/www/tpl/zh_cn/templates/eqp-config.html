@@ -1,0 +1,152 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->
+<div class="container">
+	<div class="container2">
+	<h1 class="snd-config">参数均衡器</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a href="#rm-curve" data-toggle="modal" class="$_hide_remove"><button class="btn btn-medium btn-primary">移除</button></a>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存: 添加一个预设曲线或更新现有的预设曲线。<br>
+				移除: 删除选定的预设曲线。<br>
+            </span>
+		</legend>
+
+		<fieldset>
+	    	<legend>测试 &nbsp;
+				<button class="btn btn-primary btn-small btn-submit" type="submit" name="play" value="1" $_disable_play><i class="fas fa-play"></i></button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info-play" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info-play" class="help-block-configs help-block-margin hide" style="line-height:16px; padding-bottom:10px; font-size:14px; font-weight:normal;">
+					以选定的预设曲线开始播放，该均衡器必须在音频设置中开启。<br>
+	            </span>
+			</legend>
+			<select id="eqp-curve-name" class="input-large" name="curve_name">
+				$_select[curve_name]
+			</select>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-curve-name" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-curve-name" class="help-block-configs help-block-margin hide">
+				主增益: -24 至 24 dB (对4条频带有效)。<br>
+				独立频带:<br>
+				- 频率: 20 至 14000 Hz<br>
+				- 带宽: 0.12 至 8 (较低的值将导致共鸣增加)<br>
+				- 增益: -24 至 24 dB<br>
+            </span>
+			<div class="help-block-margin">
+				<a data-toggle="modal" href="#new-curvename"><button class="btn btn-medium btn-primary">输入</button></a> 新预设名称<br>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<div id="equalizer" class="sliderbank">
+				<div class="eqp-label">频带</div>
+				<div class="vslide1">
+					<div id="master-gain">$_select[master_gain] dB</div>
+					<input id="master-gain-slider" class="vslide2" type="range" orient="vertical" min="-24" max="24" step=".1" name="master_gain" value="$_select[master_gain]" oninput="updEqpMasterGain('#master-gain', this.value)">
+					<div><a id="master-gain-up" class="btn" href="#notarget">+</a></div>
+					<div>主增益</div>
+					<div><a id="master-gain-dn" class="btn" href="#notarget">-</a></div>
+				</div>
+				<div class="vslide1"><div id="band1-freq">$_select[band1_freq] Hz</div><input id="band1-freq-slider" class="vslide2" type="range" orient="vertical" min="20" max="14000" step="1" name="band1_freq" value="$_select[band1_freq]" oninput="updEqpFreq('#band1-freq', '#band1-freq-input', this.value)"><div>Band 1</div></div>
+				<div class="vslide1"><div id="band2-freq">$_select[band2_freq] Hz</div><input id="band2-freq-slider" class="vslide2" type="range" orient="vertical" min="20" max="14000" step="1" name="band2_freq" value="$_select[band2_freq]" oninput="updEqpFreq('#band2-freq', '#band2-freq-input', this.value)"><div>Band 2</div></div>
+				<div class="vslide1"><div id="band3-freq">$_select[band3_freq] Hz</div><input id="band3-freq-slider" class="vslide2" type="range" orient="vertical" min="20" max="14000" step="1" name="band3_freq" value="$_select[band3_freq]" oninput="updEqpFreq('#band3-freq', '#band3-freq-input', this.value)"><div>Band 3</div></div>
+				<div class="vslide1"><div id="band4-freq">$_select[band4_freq] Hz</div><input id="band4-freq-slider" class="vslide2" type="range" orient="vertical" min="20" max="14000" step="1" name="band4_freq" value="$_select[band4_freq]" oninput="updEqpFreq('#band4-freq', '#band4-freq-input', this.value)"><div>Band 4</div></div>
+
+				<div id="eqp-input-ctls">
+					<div class="eqp-col1">频率(Hz)</div>
+					<div class="eqp-col1"><input id="band1-freq-input" class="input-mini eqp-input" type="number" min="20" max="14000" step="1" name="band1_freq" value="$_select[band1_freq]" oninput="updEqpFreq('#band1-freq', '#band1-freq-slider', this.value)"></div>
+					<div class="eqp-col1"><input id="band2-freq-input" class="input-mini eqp-input" type="number" min="20" max="14000" step="1" name="band2_freq" value="$_select[band2_freq]" oninput="updEqpFreq('#band2-freq', '#band2-freq-slider', this.value)"></div>
+					<div class="eqp-col1"><input id="band3-freq-input" class="input-mini eqp-input" type="number" min="20" max="14000" step="1" name="band3_freq" value="$_select[band3_freq]" oninput="updEqpFreq('#band3-freq', '#band3-freq-slider', this.value)"></div>
+					<div class="eqp-col1"><input id="band4-freq-input" class="input-mini eqp-input" type="number" min="20" max="14000" step="1" name="band4_freq" value="$_select[band4_freq]" oninput="updEqpFreq('#band4-freq', '#band4-freq-slider', this.value)"></div>
+
+					<div class="eqp-col1">带宽</div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min=".12" max="8" step=".01" id="band1-q" name="band1_q" value="$_select[band1_q]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min=".12" max="8" step=".01" id="band2-q" name="band2_q" value="$_select[band2_q]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min=".12" max="8" step=".01" id="band3-q" name="band3_q" value="$_select[band3_q]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min=".12" max="8" step=".01" id="band4-q" name="band4_q" value="$_select[band4_q]"></div>
+
+					<div class="eqp-col1">增益(dB)</div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min="-24" max="24" step=".1" id="band1-gain" name="band1_gain" value="$_select[band1_gain]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min="-24" max="24" step=".1" id="band2-gain" name="band2_gain" value="$_select[band2_gain]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min="-24" max="24" step=".1" id="band3-gain" name="band3_gain" value="$_select[band3_gain]"></div>
+					<div class="eqp-col1"><input class="input-mini eqp-input" type="number" min="-24" max="24" step=".1" id="band4-gain" name="band4_gain" value="$_select[band4_gain]"></div>
+
+					<div id="eq-enabled-select">
+						<div class="eqp-col1">启用</div>
+						<div class="eqp-col1"><select id="band1-enabled" class="select-mini eqp-select" name="band1_enabled" style="width:71.5px;">$_select[band1_enabled]</select></div>
+						<div class="eqp-col1"><select id="band2-enabled" class="select-mini eqp-select" name="band2_enabled" style="width:71.5px;">$_select[band2_enabled]</select></div>
+						<div class="eqp-col1"><select id="band3-enabled" class="select-mini eqp-select" name="band3_enabled" style="width:71.5px;">$_select[band3_enabled]</select></div>
+						<div class="eqp-col1"><select id="band4-enabled" class="select-mini eqp-select" name="band4_enabled" style="width:71.5px;">$_select[band4_enabled]</select></div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="rm-curve" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="rm-curve-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>移除预设曲线</h3>
+		</div>
+
+		<div class="modal-body">
+			<h4 id='rmcurve'>$_selected_curve</h4>
+			<span class="help-block" style="margin-bottom:5px;">
+				$_disable_rm_msg
+			</span>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">否</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="rmcurve" value="1" $_disable_rm>是</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="new-curvename" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="new-curvename-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>输入新预设</h3>
+		</div>
+
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="new-curvename">预设名称</label>
+				<div class="controls">
+					<input class="input-large" type="text" pattern="[A-Za-z0-9\-]{1,32}" id="newcurvename" name="new-curvename" value="">
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="newcurvename" value="1">确认</button>
+		</div>
+	</div>
+</form>

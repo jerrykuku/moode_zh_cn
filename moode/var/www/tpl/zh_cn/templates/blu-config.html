@@ -1,0 +1,112 @@
+﻿<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-08-08 TC moOde 6.0.0
+ *
+ */
+-->
+<div class="container">
+<div class="container2">
+	<h1 class="snd-config">BlueZ配置</h1>
+
+   <form class="form-horizontal" action="" method="post">
+		<fieldset>
+	    	<legend></legend>
+			<select id="btcmd" class="select-large" name="btcmd">
+				$_cmd[btcmd]
+			</select>
+			<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="run_btcmd" value="1" $_bt_disabled>提交</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info_btcmd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info_btcmd" class="help-block-configs hide">
+				选择并提交蓝牙控制器的指令。
+	        </span>
+			<span class="help-block-configs $_bt_msg_hide" style="margin-bottom:.5em;">
+				请在音频设置种打开蓝牙选项之后再选择并提交蓝牙控制器的指令。
+	        </span>
+		</fieldset>
+
+		<fieldset>
+			<div style="background-color: #333; font-size: small; line-height: 18px; padding: 10px; margin-right: 40px; margin-bottom: 4px; font-family: Courier New">
+				$_cmd_output
+			</div>
+
+			<div class="$_hide_ctl[paired_device]">
+				<select id="paired-device" class="select-large" name="paired_device">
+					$_device[paired_device]
+				</select>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="connectto_device" value="1">连接</button>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="rm_paired_device" value="1">移除</button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info_rm_paired_device" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_rm_paired_device" class="help-block-configs hide">
+					连接或移除已匹配的设备。
+	            </span>
+			</div>
+
+			<div class="$_hide_ctl[connected_device]">
+				<select id="connected-device" class="select-large" name="connected_device">
+					$_device[connected_device]
+				</select>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="disconnect_device" value="1">断连</button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info_disconnect_device" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_disconnect_device" class="help-block-configs hide">
+					断开当前连接的设备。
+	            </span>
+			</div>
+
+			<div class="$_hide_ctl[scanned_device]">
+				<select id="scanned-device" class="select-large" name="scanned_device">
+					$_device[scanned_device]
+				</select>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="pairwith_device" value="1">匹配</button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info_pairwith_device" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_pairwith_device" class="help-block-configs hide">
+					选择一个设备进行匹配。
+	            </span>
+			</div>
+
+			<div class="$_hide_ctl[chg_audioout]">
+				<select id="audioout" class="select-large" name="audioout">
+					$_select[audioout]
+				</select>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="chg_audioout" value="1">变更</button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info_audioout" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_audioout" class="help-block-configs hide">
+					将多媒体音频输出到本地音频设备，或者通过蓝牙连接输出到另一个音频设备。
+	            </span>
+				<span class="help-block-configs $_ao_msg_hide">
+					连接、移除和断连等指令将自动指向已选择的多媒体音频输出设备。
+	            </span>
+			</div>
+
+			<div style="margin-top: .5em;">
+				<select id="pcm_buffer" class="select-large" name="pcm_buffer">
+					$_select[pcm_buffer]
+				</select>
+				<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_pcm_buffer" value="1">设置</button>
+				<a aria-label="Help" class="info-toggle" data-cmd="info_pcm_buffer" href="#notarget"><i class="fas fa-info-circle"></i></a>
+				<span id="info_pcm_buffer" class="help-block-configs hide">
+					设置较低的值将获得较低的延迟，但是在低质连接时可能会引发断流。
+	            </span>
+				<span class="help-block-configs">
+					ALSA PCM输出缓冲区的长度，以毫秒为单位。
+	            </span>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>

@@ -1,0 +1,188 @@
+<!-- 
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->	
+<div class="container">
+	<div class="container2">
+	<h1 class="snd-config">UPnP配置</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存: 更新UPnP配置并重启渲染器。<br>
+            </span>
+		</legend>
+
+		<fieldset>
+			<legend>通用</legend>
+			<div class="control-group">
+				<label class="control-label" for="checkcontentformat">检查内容格式</label>
+				<div class="controls">
+					<select id="checkcontentformat" class="input-large" name="config[checkcontentformat]">
+						$_select[checkcontentformat]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_checkcontentformat" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_checkcontentformat" class="help-block-configs help-block-margin hide">
+						检查并确认输入格式是否支持。如果控制点或媒体服务器发送带有错误元数据的良好音频数据，请将此选项设置为“否”。<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+    
+		<fieldset>
+			<legend>TIDAL</legend>
+			<div class="control-group">
+				<label class="control-label" for="tidaluser">用户名</label>
+				<div class="controls">
+					<input class="input-large" type="text" id="tidaluser" name="config[tidaluser]" value="$_select[tidaluser]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidaluser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidaluser" class="help-block-configs help-block-margin hide">
+						你Tidal的登录名。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="tidalpass">密码</label>
+				<div class="controls">
+					<input class="input-large" type="password" pattern="[^'\u0022]+" id="tidaluser" name="config[tidalpass]" value="$_select[tidalpass]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidalpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidalpass" class="help-block-configs help-block-margin hide">
+						你Tidal账号的密码。备注：不支持单引号或双引号。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="tidalquality">音频流质量</label>
+				<div class="controls">
+					<select id="tidalquality" class="input-large" name="config[tidalquality]">
+						$_select[tidalquality]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidalquality" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidalquality" class="help-block-configs help-block-margin hide">
+						音频流质量: 'low'和'high'输入AAC码流，'lossless'属于FLAC码流，只要你的订阅支持你所选择的码流。<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Qobuz</legend>
+			<div class="control-group">
+				<label class="control-label" for="qobuzuser">用户名</label>
+				<div class="controls">
+					<input class="input-large" type="text" id="qobuzuser" name="config[qobuzuser]" value="$_select[qobuzuser]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzuser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzuser" class="help-block-configs help-block-margin hide">
+						你Qobuz的登录名。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="qobuzpass">密码</label>
+				<div class="controls">
+					<input class="input-large" type="password" pattern="[^'\u0022]+" id="tidaluser" name="config[qobuzpass]" value="$_select[qobuzpass]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzpass" class="help-block-configs help-block-margin hide">
+						你Qobuz账号的密码。备注：不支持单引号或双引号。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="qobuzformatid">音频流质量</label>
+				<div class="controls">
+					<select id="qobuzformatid" class="input-large" name="config[qobuzformatid]">
+						$_select[qobuzformatid]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzformatid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzformatid" class="help-block-configs help-block-margin hide">
+						音频流质量: 320K (MP3)或lossless (FLAC)，只要你的订阅支持该码流。<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="$_gmusicapi_msg">
+			<legend>Google Play</legend>
+			<p>
+				Google Music需要手动安装API才能生效使用。<br>
+				请在SSH中执行命令 "sudo pip install gmusicapi" 。 
+			</p>
+		</div>
+
+		<div class="$_feat_gmusicapi">
+			<fieldset>
+				<legend>Google Play</legend>
+				<div class="control-group">
+					<label class="control-label" for="gmusicuser">用户名</label>
+					<div class="controls">
+						<input class="input-large" type="text" id="gmusicuser" name="config[gmusicuser]" value="$_select[gmusicuser]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicuser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicuser" class="help-block-configs help-block-margin hide">
+							你Google Music的登录名(Gmail账号).<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicpass">密码</label>
+					<div class="controls">
+						<input class="input-large" type="password" pattern="[^'\u0022]+" id="gmusicpass" name="config[gmusicpass]" value="$_select[gmusicpass]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicpass" class="help-block-configs help-block-margin hide">
+							你Google Music账号的密码。备注：不支持单引号或双引号。<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicquality">音频流质量</label>
+					<div class="controls">
+						<select id="gmusicquality" class="input-large" name="config[gmusicquality]">
+							$_select[gmusicquality]
+						</select>
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicquality" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicquality" class="help-block-configs help-block-margin hide">
+							音频流质量: 320K, 160K 或 128K (MP3).<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicdeviceid">音乐设备编号</label>
+					<div class="controls">
+						<input class="input-large" type="text" id="gmusicdeviceid" name="config[gmusicdeviceid]" value="$_select[gmusicdeviceid]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicdeviceid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicdeviceid" class="help-block-configs help-block-margin hide">
+							音乐设备编号：默认是你播放设备的MAC地址，但不能超过此账号下登记的最大设备数。你也可以设置为你安装Google Play应用的手机或平板的设备编号。<br>
+	                    </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+</div>
+</div>

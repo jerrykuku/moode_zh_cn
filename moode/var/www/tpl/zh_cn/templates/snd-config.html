@@ -1,0 +1,786 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-08-08 TC moOde 6.0.0
+ *
+ */
+-->
+<div class="container">
+<div class="container2">
+	<h1 class="snd-config">音频配置</h1>
+
+	<form class="form-horizontal" method="post">
+		<legend>设备</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="i2sdevice">I2S音频设备</label>
+				<div class="controls">
+					<select id="i2sdevice" class="input-large" name="i2sdevice">
+						$_i2s[i2sdevice]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit btn-submit" type="submit" name="update_i2s_device" value="novalue">设定</button>
+					<span class="help-block-configs help-block-margin">
+						备注: 如果使用USB接口的音频设备，请设定为None。<br>
+						更新此设置时，自动播放功能将被关闭。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="drvoptions">驱动选项</label>
+				<div class="controls">
+					<select id="drvoptions" class="input-large" name="drvoptions">
+						$_select[drvoptions]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_drvoptions" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-drvoptions" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-drvoptions" class="help-block-configs help-block-margin hide">
+						<b>slave:</b> 打开此开关时，Boss和MiniBOSS的DAC解码器将按Kali以slave模式。<br>
+						<b>glb_mclk:</b> 打开此开关时，Kali MCLK将被使用，同时Piano2.1的PLL将被停止以获取最好的标准音质。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<a href="chp-config.php" $_chip_link_disable><button class="btn btn-primary btn-medium" $_chip_btn_disable>编辑</button></a>&nbsp;芯片/设备选项
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="alsavolume">ALSA音量(%)</label>
+				<div class="controls">
+                    <input class="input-large" $_alsa_volume_readonly type="number" maxlength="3" min="0" max="100" id="alsavolume" name="alsavolume" value="$_alsa_volume">
+					<button class="btn btn-primary btn-small set-button btn-submit status-msg $_alsa_volume_hide" data-msg="Processing" type="submit" name="update_alsa_volume" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-alsavol" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-alsavol" class="help-block-configs help-block-margin hide">
+					音量值将会在当前ALSA设置中显示。
+                    </span>
+					$_alsa_volume_msg
+				</div>
+			</div>
+		</fieldset>
+
+		<legend>MPD</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="mpdver">MPD版本</label>
+				<div class="controls">
+					<select id="cpugov" class="input-large" name="mpdver">
+						$_select[mpdver]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_mpdver" value="novalue">设定</button>
+					<span class="help-block-configs help-block-margin">
+						备注: 追加的媒体库版本仅供测试使用。<br>
+						若更换MPD版本号，媒体库将被被重置。
+					</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<a href="mpd-config.php"><button class="btn btn-primary btn-medium" style="margin-top:0px;">编辑</button></a>&nbsp;MPD配置
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#mpd-restart"><button class="btn btn-medium btn-primary">重启</button></a>&nbsp;MPD
+					</div>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group">
+				<label class="control-label">自动随机播放</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleashufflesvc2">开启</label>
+						$_select[ashufflesvc1]
+						<label class="toggle-radio" for="toggleashufflesvc1">关闭</label>
+						$_select[ashufflesvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_ashufflesvc" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-ashufflesvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-ashufflesvc" class="help-block-configs help-block-margin2 hide">
+						当播放列表中的最后一首歌曲播放完毕后，自动随机播放会从音乐库中添加两首随机选择的歌曲到播放列表的末尾并重复该过程。这种连续的音乐流，不会增加播放列表而且可以使用MPD播放的淡入淡出。
+						备注：自动随机播放将MPD的随机播放功能替换为“随机”按钮。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">开启后自动播放</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleautoplay2">开启</label>
+						$_select[autoplay1]
+						<label class="toggle-radio" for="toggleautoplay1">关闭</label>
+						$_select[autoplay0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_autoplay" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-autoplay" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-autoplay" class="help-block-configs help-block-margin2 hide">
+						系统启动后继续播放之前播放的项目。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">旋转编码器</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglerotaryenc2">开启</label>
+						$_select[rotaryenc1]
+						<label class="toggle-radio" for="togglerotaryenc1">关闭</label>
+						$_select[rotaryenc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<input class="input-large" type="text" id="rotenc_params" name="rotenc_params" value="$_select[rotenc_params]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_rotenc" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-rotary-enc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-rotary-enc" class="help-block-configs help-block-margin2 hide">
+						开启旋转编码器来控制MPD音量。<br>
+						调用WiringPi的驱动库，默认使用GPIO 23,24,GND.<br>
+						Params: DELAY ACCEL STEP PIN-A PIN-B<br>
+						- DELAY = 延迟时间 (默认值=100ms).<br>
+						- ACCEL = 步调设定 (默认值=2).<br>
+						- STEP = 旋钮快速旋转时使用的步数 (默认值=3).<br>
+						- PIN-A/B = WiringPi pin值 (默认值=pin 4,5 [GPIO 23,24]).<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">极性反转</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_invert_polarity2">开启</label>
+						$_select[invert_polarity1]
+						<label class="toggle-radio" for="toggle_invert_polarity1">关闭</label>
+						$_select[invert_polarity0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_invert_polarity" value="novalue" $_invpolarity_set_disabled>设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info_invert_polarity" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info_invert_polarity" class="help-block-configs help-block-margin2 hide">
+						更改每个通道的波形“正/负”至“负/正”。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group">
+				<label class="control-label" for="mpdcrossfade">淡入淡出(秒)</label>
+				<div class="controls">
+                    <input class="input-large" type="number" maxlength="2" min="0" max="15" id="mpdcrossfade" name="mpdcrossfade" value="$_mpdcrossfade" required>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_mpdcrossfade" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-mpdcrossfade" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-mpdcrossfade" class="help-block-configs help-block-margin hide">
+						MPD将使用自身的缓冲进行淡入淡出播放，因此需要配合设定足够的缓冲大小来支持当前音频格式下的淡入淡出播放。<br>
+						备注: 设置为0，将禁用淡入淡出功能。
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="crossfeed">交叉进给</label>
+				<div class="controls">
+					<select id="crossfeed" class="input-large" name="crossfeed">
+						$_select[crossfeed]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_crossfeed" value="novalue" $_crossfeed_set_disabled>设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-crossfeed" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-crossfeed" class="help-block-configs help-block-margin hide">
+						- 700 Hz, 4.5 dB - 默认值<br>
+						通过耳机收听，在此设置下能获得最接近虚拟扬声器放置，方位角为30度，距离大约3米。<br>
+						- 700 Hz, 6.0 dB - Chu Moy (预设)<br>
+						此设置接近于Chu Moy预设的参数。<br>
+						- 650 Hz, 9.5 dB - Jan Meier<br>
+						此设置接近于Jan Meier的CORDA放大器的参数，可以最小的参数改变来获得舒适的耳机收听感受。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group">
+				<label class="control-label">HTTP流</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle-mpd-httpd2">开启</label>
+						$_select[mpd_httpd1]
+						<label class="toggle-radio" for="toggle-mpd-httpd1">关闭</label>
+						$_select[mpd_httpd0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_mpd_httpd" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-mpd-httpd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-mpd-httpd" class="help-block-configs help-block-margin2 hide">
+						在指定端口上以HTTP流来提供MPD输出。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="mpd-httpd-port">端口</label>
+				<div class="controls">
+                    <input class="input-large" type="number" maxlength="4" min="8000" max="9000" id="mpd-httpd-port" name="mpd_httpd_port" value="$_mpd_httpd_port" required>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_mpd-httpd_port" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-mpd-httpd-port" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-mpd-httpd-port" class="help-block-configs help-block-margin hide">
+						默认端口为8000，端口范围为8000 - 9000.
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="mpd-httpd-encoder">解码</label>
+				<div class="controls">
+					<select id="mpd-httpd-encoder" class="input-large" name="mpd_httpd_encoder">
+						$_select[mpd_httpd_encoder]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_mpd_httpd_encoder" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-mpd-httpd-encoder" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-mpd-httpd-encoder" class="help-block-configs help-block-margin2 hide">
+						以FLAC(无压缩)或LAME/MP3(320 kbps)方式解码音频流。
+					</span>
+				</div>
+			</div>
+
+		</fieldset>
+
+		<legend>均衡器</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="eqfa4p">参数均衡器</label>
+				<div class="controls">
+					<select id="eqfa4p" class="input-large" name="eqfa4p">
+						$_select[eqfa4p]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_eqfa4p" value="novalue" $_eqfa4p_set_disabled>设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-eqfa4p" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-eqfa4p" class="help-block-configs help-block-margin hide">
+						由Tim Goetze编译4条均衡器曲线供试用。<br>
+						<b>备注:</b> 均衡器可应用于MPD、Airplay和Spotify输出。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="eqp-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;均衡器曲线<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="alsaequal">图形均衡器</label>
+				<div class="controls">
+					<select id="alsaequal" class="input-large" name="alsaequal">
+						$_select[alsaequal]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_alsaequal" value="novalue" $_alsaequal_set_disabled>设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info-alsaequal" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-alsaequal" class="help-block-configs help-block-margin hide">
+						由Tim Goetze再次编译的传统均衡器曲线供试用。<br>
+						<b>备注:</b> 均衡器可应用于MPD、Airplay和Spotify输出。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="eqg-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;均衡器曲线<br>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+		<!-- RENDERERS, AVAILABILITY IS CONTROLLED BY FEAT_BITMASK -->
+
+		<legend>渲染器</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="btname">蓝牙</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglebtsvc2">打开</label>
+						$_select[btsvc1]
+						<label class="toggle-radio" for="togglebtsvc1">关闭</label>
+						$_select[btsvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<input class="input-large" type="text" id="btname" name="btname" value="$_select[btname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_bt_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-btsvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-btsvc" class="help-block-configs help-block-margin2 hide">
+						蓝牙控制器由Johan Hedberg (BlueZ)和Arkadiusz Bokowy (Bluez-alsa)开发。<br>
+                    </span>
+					<span class="help-block-configs help-block-margin2">
+					注意: 请确定蓝牙适配器已成功安装并开启，否则系统将被吊起。<br>
+                    </span>
+				</div>
+				<label class="control-label">匹配引擎</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle-pairing-agent2">打开</label>
+						$_select[pairing_agent1]
+						<label class="toggle-radio" for="toggle-pairing-agent1">关闭</label>
+						$_select[pairing_agent0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_pairing_agent" value="novalue" $_bt_btn_disable>设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info_pairing_agent" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info_pairing_agent" class="help-block-configs help-block-margin2 hide">
+						配对引擎将自动接受来自客户端的“配对/连接”请求，无需从BlueZ界面执行手动扫描。<br>
+                    </span>
+				</div>
+				<label class="control-label">扬声器共享</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglebtmulti2">打开</label>
+						$_select[btmulti1]
+						<label class="toggle-radio" for="togglebtmulti1">关闭</label>
+						$_select[btmulti0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+ 						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_bt_multi" value="novalue" $_bt_btn_disable>设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-btmulti" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-btmulti" class="help-block-configs help-block-margin2 hide">
+						允许多用户共享蓝牙扬声器。<br>
+                    </span>
+				</div>
+				<label class="control-label" for="rsmafterbt">继续MPD播放</label>
+				<div class="controls">
+					<select id="rsmafterbt" class="select-mini2" style="width: 74px;" name="rsmafterbt">
+						$_select[rsmafterbt]
+					</select>
+					<span style="display: inline-block;">
+ 						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_rsmafterbt" value="novalue" $_bt_btn_disable>设定</button>
+ 						<a aria-label="Help" class="info-toggle" data-cmd="info_rsmafterbt" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</span>
+					<span id="info_rsmafterbt" class="help-block-configs help-block-margin hide">
+						在蓝牙客户端断开后，继续MPD播放。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="blu-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;BlueZ配置<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#bt-restart" $_bt_link_disable><button class="btn btn-medium btn-primary" $_bt_btn_disable>重启</button></a>&nbsp;蓝牙控制器<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group $_feat_airplay">
+				<label class="control-label" for="airplayname">Airplay</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleairplaysvc2">打开</label>
+						$_select[airplaysvc1]
+						<label class="toggle-radio" for="toggleairplaysvc1">关闭</label>
+						$_select[airplaysvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<input class="input-large" type="text" id="airplayname" name="airplayname" value="$_select[airplayname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_airplay_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-airplaysvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-airplaysvc" class="help-block-configs help-block-margin2 hide">
+						由Mike Brady与James "Abrasive" Laird编译。<br>
+                    </span>
+				</div>
+				<label class="control-label" for="rsmafterapl">继续MPD播放</label>
+				<div class="controls">
+					<select id="rsmafterapl" class="select-mini2" style="width: 74px;" name="rsmafterapl">
+						$_select[rsmafterapl]
+					</select>
+					<span style="display: inline-block;">
+ 						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_rsmafterapl" value="novalue" $_airplay_btn_disable>设定</button>
+ 						<a aria-label="Help" class="info-toggle" data-cmd="info_rsmafterapl" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</span>
+					<span id="info_rsmafterapl" class="help-block-configs help-block-margin hide">
+						在Airplay客户端断开后，继续MPD播放。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="apl-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;Airplay配置<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#airplay-restart" $_airplay_link_disable><button class="btn btn-medium btn-primary" $_airplay_btn_disable>重启</button></a>&nbsp;Airplay渲染器<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group $_feat_spotify">
+				<label class="control-label" for="spotifyname">Spotify</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglespotifysvc2">打开</label>
+						$_select[spotifysvc1]
+						<label class="toggle-radio" for="togglespotifysvc1">关闭</label>
+						$_select[spotifysvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<input class="input-large" type="text" id="spotifyname" name="spotifyname" value="$_select[spotifyname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_spotify_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-spotifysvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-spotifysvc" class="help-block-configs help-block-margin2 hide">
+						由Sasha Hilton与Paul Lietar编译。<br>
+					</span>
+					<span class="help-block-configs help-block-margin2">
+						备注: 此服务开启需要Spotify的高级账号。
+					</span>
+				</div>
+				<label class="control-label" for="rsmafterspot">继续MPD播放</label>
+				<div class="controls">
+					<select id="rsmafterspot" class="select-mini2" style="width: 74px;" name="rsmafterspot">
+						$_select[rsmafterspot]
+					</select>
+					<span style="display: inline-block;">
+ 						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_rsmafterspot" value="novalue" $_spotify_btn_disable>设定</button>
+ 						<a aria-label="Help" class="info-toggle" data-cmd="info_rsmafterspot" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</span>
+					<span id="info_rsmafterspot" class="help-block-configs help-block-margin hide">
+						在Spotify Connect客户端停止播放后，继续MPD播放。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="spo-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;Spotify配置<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#spotify-restart" $_spotify_link_disable><button class="btn btn-medium btn-primary" $_spotify_btn_disable>重启</button></a>&nbsp;Spotify渲染器<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#spotify-clear-credentials" $_spotify_link_disable><button class="btn btn-medium btn-primary" $_spotify_btn_disable>清除</button></a>&nbsp;凭证缓存<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="horiz-rule-light"></div>
+
+			<div class="control-group $_feat_squeezelite">
+				<label class="control-label">Squeezelite</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleslsvc2">打开</label>
+						$_select[slsvc1]
+						<label class="toggle-radio" for="toggleslsvc1">关闭</label>
+						$_select[slsvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 4px;">
+						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_sl_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-slsvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-slsvc" class="help-block-configs help-block-margin2 hide">
+						由Adrian Smith与Ralph Irving编译。<br>
+                    </span>
+				</div>
+				<label class="control-label" for="rsmaftersl">继续MPD播放</label>
+				<div class="controls">
+					<select id="rsmaftersl" class="select-mini2" style="width: 74px;" name="rsmaftersl">
+						$_select[rsmaftersl]
+					</select>
+					<span style="display: inline-block;">
+ 						<button class="btn btn-primary btn-small btn-submit" type="submit" name="update_rsmaftersl" value="novalue" $_sl_btn_disable>设置</button>
+ 						<a aria-label="Help" class="info-toggle" data-cmd="info_rsmaftersl" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</span>
+					<span id="info_rsmaftersl" class="help-block-configs help-block-margin hide">
+						当LMS关闭后，继续MPD播放。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="sqe-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;Squeezelite配置<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#sl-restart" $_sl_link_disable><button class="btn btn-medium btn-primary" $_sl_btn_disable>重启</button></a>&nbsp;Squeezelite渲染器<br>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+		<!-- UPNP/DLNA, AVAILABILITY IS CONTROLLED BY FEAT_BITMASK -->
+
+		<legend>UPnP/DLNA</legend>
+		<fieldset>
+			<div class="control-group $_feat_upmpdcli">
+				<label class="control-label" for="upnpname">UPnP客户端(MPD)</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleupnpsvc2">打开</label>
+						$_select[upnpsvc1]
+						<label class="toggle-radio" for="toggleupnpsvc1">关闭</label>
+						$_select[upnpsvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+	                    <input class="input-large" type="text" id="upnpname" name="upnpname" value="$_select[upnpname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_upnp_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-upnpsvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-upnpsvc" class="help-block-configs help-block-margin2 hide">
+						由Jean-Francois Dockes编译。<br>
+						- 支持Open Home Media (ohMedia).<br>
+						- 电台的网络地址可添加至 /etc/upmpdcli-radio.conf。<br>
+                    </span>
+					<div style="margin-top:.5em">
+						<a href="upp-config.php"><button class="btn btn-medium btn-primary">编辑</button></a>&nbsp;UPnP配置<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a data-toggle="modal" href="#upnp-restart" $_upnp_link_disable><button class="btn btn-medium btn-primary" $_upnp_btn_disable>重启</button></a>&nbsp;UPnP渲染器<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group $_feat_minidlna">
+				<label class="control-label" for="dlnaname">DLNA服务器</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggledlnasvc2">打开</label>
+						$_select[dlnasvc1]
+						<label class="toggle-radio" for="toggledlnasvc1">关闭</label>
+						$_select[dlnasvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+	                    <input class="input-large" type="text" id="dlnaname" name="dlnaname" value="$_select[dlnaname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_dlna_settings" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-dlnasvc" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-dlnasvc" class="help-block-configs help-block-margin2 hide">
+						由Justin Maggard编译。<br>
+                    </span>
+					<div class="help-block-margin">
+						<a data-toggle="modal" href="#rebuild-dlnadb" $_dlna_link_disable><button class="btn btn-medium btn-primary" $_dlna_btn_disable>重建</button></a>&nbsp;DLNA数据库<br>
+					</div>
+					<div style="margin-top:.75em">
+						<a id="dlnasvc-link" href="http://$_select[hostip]:8200" target="_blank" class="btn btn-medium btn-primary $_dlna_btn_disable" style="padding-top:.35em;" $_dlna_link_disable>查看</a>&nbsp;数据库状态<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group $_feat_djmount">
+				<label class="control-label">UPnP多媒体浏览器</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_upnp_browser2">打开</label>
+						$_select[upnp_browser1]
+						<label class="toggle-radio" for="toggle_upnp_browser1">关闭</label>
+						$_select[upnp_browser0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_upnp_browser" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-upnp-browser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-upnp-browser" class="help-block-configs help-block-margin2 hide">
+						由Rémi Turboult编译。可挂载UPnP/DLNA多媒体服务器于 /mnt/UPNP.<br>
+						备注: 在媒体库配置中创建并索引UPnP的音乐资源。
+                    </span>
+					<div class="help-block-margin">
+						<a data-toggle="modal" href="#rebuild-dlnadb" $_djmount_link_disable><button class="btn btn-medium btn-primary" $_djmount_btn_disable>重启</button></a>&nbsp;UPnP浏览器<br>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+		<legend class="$_feat_mpdas">服务</legend>
+		<fieldset>
+			<div class="control-group $_feat_mpdas">
+				<label class="control-label">Audio scrobbler</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglempdassvc2">打开</label>
+						$_select[mpdassvc1]
+						<label class="toggle-radio" for="togglempdassvc1">关闭</label>
+						$_select[mpdassvc0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<input class="input-large" type="text" id="mpdasuser" name="mpdasuser" value="$_select[mpdasuser]" style="width:117px;" placeholder="userid">
+ 						<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_mpdas" value="novalue">设定</button>
+						<a aria-label="Help" class="info-toggle" data-cmd="info-mpdas" href="#notarget"><i class="fas fa-info-circle"></i></a><br>
+						<input class="input-large" type="password"  pattern="[^'\u0022]+" id="mpdaspwd" name="mpdaspwd" value="$_select[mpdaspwd]" style="width:117px;" placeholder="password">
+						<a aria-label="Help" class="info-toggle" data-cmd="info-mpdas-pwd" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					</div>
+					<span id="info-mpdas-pwd" class="help-block-configs help-block-margin hide">
+						密码中不能包含单引号或双引号。<br>
+                    </span>
+					<span id="info-mpdas" class="help-block-configs help-block-margin hide">
+						由Henrik Friedrichsen编译。<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<!-- RENDERERS AND SERVICES AVAILABILITY IS CONTROLLED BY FEAT_BITMASK -->
+
+	</form>
+</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<div id="rebuild-dlnadb" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="rebuild-dlnadb-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重建DLNA数据库?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="rebuild_dlnadb" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="mpd-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="mpd-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启MPD服务?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="mpdrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="bt-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="bt-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启蓝牙控制器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="btrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="airplay-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="airplay-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启Airplay接收器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="airplayrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="spotify-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="spotify-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启Spotify接收器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="spotifyrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="spotify-clear-credentials" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="spotify-clear-credentials-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>清除凭证缓存?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="spotify_clear_credentials" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="sl-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="sl-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启Squeezelite渲染器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="slrestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="upnp-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="upnp-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启UPnP渲染器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="upnprestart" value="1">确定</button>
+		</div>
+	</div>
+</form>
+
+<form class="form-horizontal" method="post">
+	<div id="upnp-browser-restart" class="modal modal-sm2 hide fade" tabindex="-1" role="dialog" aria-labelledby="upnp-browser-restart-label" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+
+		<div class="modal-body">
+			<h6>重启UPnP浏览器?</h6>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			<button class="btn btn-primary btn-submit" type="submit" name="upnp_browser_restart" value="1">确定</button>
+		</div>
+	</div>
+</form>

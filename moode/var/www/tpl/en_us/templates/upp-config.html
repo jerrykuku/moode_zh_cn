@@ -1,0 +1,188 @@
+<!-- 
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->	
+<div class="container">
+	<div class="container2">
+	<h1 class="snd-config">UPnP Config</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">Save</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				SAVE: Update UPnP configuration and restart UPnP renderer.<br>
+            </span>
+		</legend>
+
+		<fieldset>
+			<legend>General</legend>
+			<div class="control-group">
+				<label class="control-label" for="checkcontentformat">Check content format</label>
+				<div class="controls">
+					<select id="checkcontentformat" class="input-large" name="config[checkcontentformat]">
+						$_select[checkcontentformat]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_checkcontentformat" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_checkcontentformat" class="help-block-configs help-block-margin hide">
+						Check that the input format is supported. Set this option to No if a control point or media server sends good audio data with bad metadata.<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+    
+		<fieldset>
+			<legend>TIDAL</legend>
+			<div class="control-group">
+				<label class="control-label" for="tidaluser">Userid</label>
+				<div class="controls">
+					<input class="input-large" type="text" id="tidaluser" name="config[tidaluser]" value="$_select[tidaluser]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidaluser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidaluser" class="help-block-configs help-block-margin hide">
+						Your Tidal login name.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="tidalpass">Password</label>
+				<div class="controls">
+					<input class="input-large" type="password" pattern="[^'\u0022]+" id="tidaluser" name="config[tidalpass]" value="$_select[tidalpass]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidalpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidalpass" class="help-block-configs help-block-margin hide">
+						The password for your Tidal account. NOTE: Single and double quotes are not allowed.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="tidalquality">Stream quality</label>
+				<div class="controls">
+					<select id="tidalquality" class="input-large" name="config[tidalquality]">
+						$_select[tidalquality]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_tidalquality" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_tidalquality" class="help-block-configs help-block-margin hide">
+						Stream quality: 'low' and 'high' are AAC streams, 'lossless' is FLAC and will only work if your subscription allows it.<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Qobuz</legend>
+			<div class="control-group">
+				<label class="control-label" for="qobuzuser">Userid</label>
+				<div class="controls">
+					<input class="input-large" type="text" id="qobuzuser" name="config[qobuzuser]" value="$_select[qobuzuser]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzuser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzuser" class="help-block-configs help-block-margin hide">
+						Your Qobuz login name.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="qobuzpass">Password</label>
+				<div class="controls">
+					<input class="input-large" type="password" pattern="[^'\u0022]+" id="tidaluser" name="config[qobuzpass]" value="$_select[qobuzpass]">
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzpass" class="help-block-configs help-block-margin hide">
+						The password for your Qobuz account. NOTE: Single and double quotes are not allowed.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="qobuzformatid">Stream quality</label>
+				<div class="controls">
+					<select id="qobuzformatid" class="input-large" name="config[qobuzformatid]">
+						$_select[qobuzformatid]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_qobuzformatid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_qobuzformatid" class="help-block-configs help-block-margin hide">
+						Stream quality: 320K (MP3) or lossless (FLAC) if your subscription allows it.<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="$_gmusicapi_msg">
+			<legend>Google Play</legend>
+			<p>
+				The Google Music feature is enabled but the API must be manually installed.<br>
+				Run the command "sudo pip install gmusicapi" from an ssh session. 
+			</p>
+		</div>
+
+		<div class="$_feat_gmusicapi">
+			<fieldset>
+				<legend>Google Play</legend>
+				<div class="control-group">
+					<label class="control-label" for="gmusicuser">Userid</label>
+					<div class="controls">
+						<input class="input-large" type="text" id="gmusicuser" name="config[gmusicuser]" value="$_select[gmusicuser]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicuser" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicuser" class="help-block-configs help-block-margin hide">
+							Your Google Music login name (Gmail address).<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicpass">Password</label>
+					<div class="controls">
+						<input class="input-large" type="password" pattern="[^'\u0022]+" id="gmusicpass" name="config[gmusicpass]" value="$_select[gmusicpass]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicpass" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicpass" class="help-block-configs help-block-margin hide">
+							The password for your Google Music account. NOTE: Single and double quotes are not allowed.<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicquality">Stream quality</label>
+					<div class="controls">
+						<select id="gmusicquality" class="input-large" name="config[gmusicquality]">
+							$_select[gmusicquality]
+						</select>
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicquality" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicquality" class="help-block-configs help-block-margin hide">
+							Stream quality: 320K, 160K or 128K (MP3).<br>
+	                    </span>
+					</div>
+				</div>
+	
+				<div class="control-group">
+					<label class="control-label" for="gmusicdeviceid">Music device id</label>
+					<div class="controls">
+						<input class="input-large" type="text" id="gmusicdeviceid" name="config[gmusicdeviceid]" value="$_select[gmusicdeviceid]">
+						<a aria-label="Help" class="info-toggle" data-cmd="info_gmusicdeviceid" href="#notarget"><i class="fas fa-info-circle"></i></a>
+						<span id="info_gmusicdeviceid" class="help-block-configs help-block-margin hide">
+							Music device id. Your system MAC address will be used by default, but this will count against the maximum count of registered devices for this account. You can optionally set this value to the device ID from a phone or tablet on which you also use Google Play Music.<br>
+	                    </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+</div>
+</div>

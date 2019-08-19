@@ -1,0 +1,79 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-30 TC moOde 5.3
+ *
+ */
+-->
+<div class="container">
+<div class="container2">
+	<h1 class="snd-config">Source Select</h1>
+
+    <form class="form-horizontal" action="" method="post">
+		<fieldset>
+			<legend>Options</legend>
+			<div class="control-group">
+				<label class="control-label" for="audioout">Audio source</label>
+				<div class="controls">
+					<select id="audioin" class="select-medium2" name="audioin">
+						$_select[audioin]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_audioin" value="novalue">Set</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_audioin" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_audioin" class="help-block-configs help-block-margin hide">
+						Select which source provides audio.<br>
+		            </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="rsmafterinp">Resume MPD</label>
+				<div class="controls">
+					<select id="rsmafterinp" class="select-medium2" name="rsmafterinp">
+						$_select[rsmafterinp]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_rsmafterinp" value="novalue">Set</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_rsmafterinp" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_rsmafterinp" class="help-block-configs help-block-margin hide">
+						Resume MPD playback after changing Audio source to Local (MPD).<br>
+	                </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="audioout">Output device</label>
+				<div class="controls">
+					<select id="audioout" class="select-medium2" name="audioout">
+						$_select[audioout]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_audioout" value="novalue">Set</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_audioout" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_audioout" class="help-block-configs help-block-margin hide">
+						Select which device will receive audio from the selected source.
+		            </span>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<div style="background-color: #333; font-size: 14px; line-height: 18px; padding: 10px; margin-right: 40px; font-family: Courier New">
+		Select which source provides audio and which output device will receive it. The default audio source is Local (MPD) and the default output device is the locally attached device (DAC, Amp or Transport).<br><br> 
+		If the audio device offers input sources for example Analog or S/PDIF they will be listed. These input sources use Hardware volume so be sure to set MPD Volume control to Hardware or Disabled (0dB). If MPD Volume control is set to Hardware moOde can function as a preamp.<br><br>
+	</div>
+</div>
+</div>

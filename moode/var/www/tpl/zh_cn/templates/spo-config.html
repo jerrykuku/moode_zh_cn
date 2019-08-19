@@ -1,0 +1,101 @@
+<!-- 
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->	
+<div class="container">
+<div class="container2">
+	<h1 class="snd-config">Spotify配置</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存: 更新Spotify配置并重启Spotify渲染器。<br>
+            </span>
+		</legend>
+    
+		<fieldset>
+	    	<legend>设置</legend>
+			<div class="control-group">
+				<label class="control-label" for="bitrate">比特率</label>
+				<div class="controls">
+					<select id="bitrate" class="input-large" name="config[bitrate]">
+						$_select[bitrate]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_bitrate" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_bitrate" class="help-block-configs help-block-margin hide">
+						默认为160kHz.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="initial_volume">启动音量</label>
+				<div class="controls">
+					<input class="input-large" type="number" min="0" max="100" id="initial_volume" name="config[initial_volume]" value="$_select[initial_volume]"> (%)
+					<a aria-label="Help" class="info-toggle" data-cmd="info_initial_volume" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_initial_volume" class="help-block-configs help-block-margin hide">
+						连接后的启动音量范围为[0-100]。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="volume_curve">音量曲线</label>
+				<div class="controls">
+					<select id="volume_curve" class="input-large" name="config[volume_curve]">
+						$_select[volume_curve]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_volume_curve" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_volume_curve" class="help-block-configs help-block-margin hide">
+						对数或线性音量曲线，默认为对数。<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="volume_normalization">音量标准化</label>
+				<div class="controls">
+					<select id="volume_normalization" class="input-large" name="config[volume_normalization]">
+						$_select[volume_normalization]
+					</select>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_volume_normalization" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_volume_normalization" class="help-block-configs help-block-margin hide">
+						调节所有播放歌曲的音量，使它们听起来响度相同.<br>
+					</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="normalization_pregain">标准化预增益</label>
+				<div class="controls">
+					<input class="input-large" type="number" min="0" max="10" id="normalization_pregain" name="config[normalization_pregain]" value="$_select[normalization_pregain]"> (dB)
+					<a aria-label="Help" class="info-toggle" data-cmd="info_normalization_pregain" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_normalization_pregain" class="help-block-configs help-block-margin hide">
+						音量增益范围为[0-10]dB。<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>

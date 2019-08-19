@@ -1,0 +1,200 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-08-08 TC moOde 6.0.0
+ *
+ */
+-->
+<div class="container">
+	<div class="container2">
+	<h1 class="snd-config">芯片/设备选项</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存：更新芯片选项。<br>
+            </span>
+		</legend>
+
+    	<legend>选项</legend>
+
+		<div class="$_burrbrown_hide">
+			<h4>Burr Brown PCM and TAS chips</h4>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="digfilter">过采样过滤器</label>
+					<div class="controls">
+						<select id="digfilter" class="input-large" name="config[digfilter]">
+							$_select[digfilter]
+						</select>
+						<span class="help-block-configs help-block-margin">
+	                    	滤波器在过采样阶段将应用于PCM样本在sigma-delta调制器之前。<br>
+							开始播放将自动重启以使过滤器更改生效。<br>
+							注意：如果采样率为384 kHz，过滤器将绕过。
+	                    </span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="analoggain">模拟增益</label>
+					<div class="controls">
+						<select id="analoggain" class="input-large" name="config[analoggain]">
+							$_select[analoggain]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							 模拟增益可以选择设置为0 dB (2-Vrms)或–6 dB (1-Vrms).
+	                    </span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="analogboost">模拟增益提升</label>
+					<div class="controls">
+						<select id="analogboost" class="input-large" name="config[analogboost]">
+							$_select[analogboost]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							 模拟增益提升可以选择设置为0 dB (标准幅度) 或.8 dB (10%的增益提升).
+	                   </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="$_allo_piano_hide">
+			<legend></legend>
+			<h4>Allo Piano 2.1 (Dual PCM5142)</h4>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="outputmode">输出模式</label>
+					<div class="controls">
+						<select id="outputmode" class="input-large" name="config[outputmode]">
+							$_select[outputmode]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							双单声道: 主要输出左声道或右声道。<br>
+							双立体声: 同时输出双路左右两声道。<br>
+							立体声: 所有频率统一在主左右声道输出，次左右声道将静音。<br>
+							低音炮: 2.1/2.2。<br>
+	                    </span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="lowpassfreq">低音炮x-over频率</label>
+					<div class="controls">
+						<select id="lowpass" class="input-large" name="config[lowpass]" $_allo_piano_submode_disabled>
+							$_select[lowpass]
+						</select>
+						&nbsp;Hz
+						<span class="help-block-configs help-block-margin">
+							频率范围: 60 - 200 Hz.<br>
+	                    </span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="subwvol">低音炮音量</label>
+					<div class="controls">
+	                    <input class="input-mini" type="number" maxlength="3" min="0" max="100" id="subwvol" name="config[subwvol]" value="$subwvol" $_allo_piano_submode_disabled> %
+						<span class="help-block-configs help-block-margin">
+							音量范围: 0 - 100%.
+	                    </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="$_allo_katana_hide">
+			<h4>Allo Katana DAC (ESS Sabre ES9038Q2M)</h4>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="katana_osf">过采样过滤器</label>
+					<div class="controls">
+						<select id="katana_osf" class="input-large" name="config[katana_osf]">
+							$_select[katana_osf]
+						</select>
+						<span class="help-block-configs help-block-margin">
+	                    		滤波器在过采样阶段应用于PCM样本。<br>
+							开始播放将自动重启以使过滤器更改生效。<br>
+							默认值: Apodizing Fast Roll-off Filter。
+	                    </span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="katana_deemphasis">去加重</label>
+					<div class="controls">
+						<select id="katana_deemphasis" class="input-large" name="config[katana_deemphasis]">
+							$_select[katana_deemphasis]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							 去加重可选择设置为绕过、32、44.1或48 kHz.<br>
+							 默认值: 绕过。
+	                    </span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="katana_dop">DSD覆盖PCM (DoP)</label>
+					<div class="controls">
+						<select id="katana_dop" class="input-large" name="config[katana_dop]">
+							$_select[katana_dop]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							 打开或关闭DSD覆盖PCM (DoP) 的协议。<br>
+							 默认值：打开。
+	                   </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="$_audiophonics_q2m_hide">
+			<h4>$_audiophonics_q2m_device_name</h4>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="audiophonics_q2m_osf">过采样过滤器</label>
+					<div class="controls">
+						<select id="audiophonics_q2m_osf" class="input-large" name="config[audiophonics_q2m_osf]">
+							$_select[audiophonics_q2m_osf]
+						</select>
+						<span class="help-block-configs help-block-margin">
+	                    		滤波器在过采样阶段应用于PCM样本。<br>
+							开始播放将自动重启以使过滤器更改生效。<br>
+	                    </span>
+					</div>
+				</div>
+
+				<!-- NOTE: This option is handled in the Source Select screen -->
+				<div class="control-group hide">
+					<label class="control-label" for="audiophonics_q2m_input">DAC导入</label>
+					<div class="controls">
+						<select id="audiophonics_q2m_input" class="input-large" name="config[audiophonics_q2m_input]">
+							$_select[audiophonics_q2m_input]
+						</select>
+						<span class="help-block-configs help-block-margin">
+							默认值: I2S
+	                    </span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+</div>
+</div>

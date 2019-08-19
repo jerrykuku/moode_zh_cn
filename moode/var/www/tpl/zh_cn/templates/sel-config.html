@@ -1,0 +1,80 @@
+<!--
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-30 TC moOde 5.3
+ *
+ */
+-->
+<div class="container">
+<div class="container2">
+	<h1 class="snd-config">源选择</h1>
+
+    <form class="form-horizontal" action="" method="post">
+		<fieldset>
+			<legend>选项</legend>
+			<div class="control-group">
+				<label class="control-label" for="audioout">音源</label>
+				<div class="controls">
+					<select id="audioin" class="select-medium2" name="audioin">
+						$_select[audioin]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_audioin" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_audioin" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_audioin" class="help-block-configs help-block-margin hide">
+						选择何种源提供音频。<br>
+		            </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="rsmafterinp">继续媒体库</label>
+				<div class="controls">
+					<select id="rsmafterinp" class="select-medium2" name="rsmafterinp">
+						$_select[rsmafterinp]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_rsmafterinp" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_rsmafterinp" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_rsmafterinp" class="help-block-configs help-block-margin hide">
+						在音源变更到本地媒体库后继续媒体库播放。<br>
+	                </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="audioout">输出设备</label>
+				<div class="controls">
+					<select id="audioout" class="select-medium2" name="audioout">
+						$_select[audioout]
+					</select>
+					<button class="btn btn-primary btn-small set-button btn-submit" type="submit" name="update_audioout" value="novalue">设定</button>
+					<a aria-label="Help" class="info-toggle" data-cmd="info_audioout" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info_audioout" class="help-block-configs help-block-margin hide">
+						选择接收选定音源音频的设备。
+		            </span>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<div style="background-color: #333; font-size: 14px; line-height: 18px; padding: 10px; margin-right: 40px; font-family: Courier New">
+		选择哪个源提供音频以及哪个输出设备将接收音频。 默认音源为本地媒体库，默认输出设备为本地连接设备（DAC，Amp或Transport）。
+<br><br> 
+		如果音频设备提供输入源，例如模拟或S/PDIF，则会列出它们。 若这些输入源使用硬件音量，请务必将媒体库音量控制设置为为硬件或禁用（0dB）。 如果媒体库音量控制设置为硬件，则本播放器可用作前置放大器。<br><br>
+	</div>
+</div>
+</div>

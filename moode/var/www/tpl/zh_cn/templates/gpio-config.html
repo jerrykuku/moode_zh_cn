@@ -1,0 +1,209 @@
+<!-- 
+/**
+ * moOde audio player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * 2019-05-07 TC moOde 5.2
+ *
+ */
+-->	
+<div class="container">
+<div class="container2">
+	<h1 class="sys-config">GPIO配置</h1>
+
+    <form class="form-horizontal" action="" method="post">
+    	<legend class="legend-configs">
+			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">保存</button>
+			<a aria-label="Help" class="info-toggle" data-cmd="info-buttons" href="#notarget"><i class="fas fa-info-circle"></i></a>
+			<span id="info-buttons" class="help-block-configs help-block-margin legend-info-help hide">
+				保存: 更新并重启GPIO控制器。<br><br>
+				<img src="images/gpio-pins.png"><br><br>
+				- GPIO控制器将引脚配置为输入/上拉。<br>
+				- 引脚为3V3，GPIO2和GPIO3引脚具有固定的上拉电阻。<br>
+				- 上电时，引脚设置为输入模式，0-8引脚上拉至3V3，9-27引脚下拉至0V。
+            </span>
+		</legend>
+
+		<fieldset>
+	    	<legend>设置</legend>
+			<div class="control-group">
+				<label class="control-label" for="sw_1_pin">按钮1</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_1_enabled2">开启</label>
+						$_select[sw_1_enabled1]
+						<label class="toggle-radio" for="toggle_sw_1_enabled1">关闭</label>
+						$_select[sw_1_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_1_pin" name="config[1][pin]" value="$_select[sw_1_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_1_cmd" name="config[1][command]" value="$_select[sw_1_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_2_pin">按钮2</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_2_enabled2">开启</label>
+						$_select[sw_2_enabled1]
+						<label class="toggle-radio" for="toggle_sw_2_enabled1">关闭</label>
+						$_select[sw_2_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_2_pin" name="config[2][pin]" value="$_select[sw_2_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_2_cmd" name="config[2][command]" value="$_select[sw_2_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_3_pin">按钮3</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_3_enabled2">开启</label>
+						$_select[sw_3_enabled1]
+						<label class="toggle-radio" for="toggle_sw_3_enabled1">关闭</label>
+						$_select[sw_3_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_3_pin" name="config[3][pin]" value="$_select[sw_3_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_3_cmd" name="config[3][command]" value="$_select[sw_3_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_4_pin">按钮4</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_4_enabled2">开启</label>
+						$_select[sw_4_enabled1]
+						<label class="toggle-radio" for="toggle_sw_4_enabled1">关闭</label>
+						$_select[sw_4_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_4_pin" name="config[4][pin]" value="$_select[sw_4_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_4_cmd" name="config[4][command]" value="$_select[sw_4_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_5_pin">按钮5</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_5_enabled2">开启</label>
+						$_select[sw_5_enabled1]
+						<label class="toggle-radio" for="toggle_sw_5_enabled1">关闭</label>
+						$_select[sw_5_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_5_pin" name="config[5][pin]" value="$_select[sw_5_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_5_cmd" name="config[5][command]" value="$_select[sw_5_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_6_pin">按钮6</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_6_enabled2">开启</label>
+						$_select[sw_6_enabled1]
+						<label class="toggle-radio" for="toggle_sw_6_enabled1">关闭</label>
+						$_select[sw_6_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_6_pin" name="config[6][pin]" value="$_select[sw_6_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_6_cmd" name="config[6][command]" value="$_select[sw_6_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_7_pin">按钮7</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_7_enabled2">开启</label>
+						$_select[sw_7_enabled1]
+						<label class="toggle-radio" for="toggle_sw_7_enabled1">关闭</label>
+						$_select[sw_7_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_7_pin" name="config[7][pin]" value="$_select[sw_7_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_7_cmd" name="config[7][command]" value="$_select[sw_7_cmd]"> 
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="sw_8_pin">按钮8</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggle_sw_8_enabled2">开启</label>
+						$_select[sw_8_enabled1]
+						<label class="toggle-radio" for="toggle_sw_8_enabled1">关闭</label>
+						$_select[sw_8_enabled0]
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;margin-right:6px;">
+						<span>PIN&nbsp;</span>
+						<input class="input-mini" type="number" min="2" max="27" id="sw_8_pin" name="config[8][pin]" value="$_select[sw_8_pin]"> 
+					</div>
+					<div style="display: inline-block; vertical-align: top; margin-top: 2px;">
+						<span>CMD&nbsp;</span>
+						<input class="input-large" type="text" id="sw_8_cmd" name="config[8][command]" value="$_select[sw_8_cmd]"> 
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="debounce">防抖动</label>
+				<div class="controls">
+					<input class="hide" name="config[99][param]" value="bounce_time">
+					<input class="input-medium" type="number" min="1" max="2000" id="debounce_time" name="config[99][value]" value="$_select[bounce_time]"> (ms)
+					<a aria-label="Help" class="info-toggle" data-cmd="info-debounce" href="#notarget"><i class="fas fa-info-circle"></i></a>
+					<span id="info-debounce" class="help-block-configs help-block-margin hide">
+						抖动时间，以毫秒（ms）为单位。此参数用于忽略第一次变更报告后所有后续关于抖动时间的变更。<br>
+		            </span>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>

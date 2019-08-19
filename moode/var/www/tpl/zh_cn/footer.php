@@ -31,7 +31,7 @@
 			<p>Moode Audio Player is a derivative of the wonderful WebUI audio player client for MPD originally designed and coded by Andrea Coiutti and Simone De Gregori, and subsequently enhanced by early efforts from the RaspyFi/Volumio projects.</p>
 			<h4>版本信息</h4>
 			<ul>
-				<li>版本: 6.0.0 2019-08-08 <a class="moode-about-link1" href="./relnotes.txt" target="_blank">查看版本说明</a></li>
+				<li>Release: 6.0.0.mod 2019-08-08 <a class="moode-about-link1" href="./relnotes.txt" target="_blank">查看版本说明</a></li>
 				<li>安装向导: <a class="moode-about-link1" href="./setup.txt" target="_blank">查看向导</a></li>
 				<li>Coding:	Tim Curtis &copy; 2014 <a class="moode-about-link1" href="http://moodeaudio.org" target="_blank">Moode Audio</a>, <a class="moode-about-link1" href="https://twitter.com/MoodeAudio" target="_blank">Twitter</a></li>
 				<li>Contributors: <a class="moode-about-link1" href="./CONTRIBS.html" target="_blank">View contributors</a></li>

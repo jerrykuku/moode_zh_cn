@@ -180,8 +180,8 @@
 							</button>
 							<div class="dropdown-menu open">
 								<ul class="dropdown-menu custom-select inner" role="menu">
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="adaptive-enabled-yn"><span class="text">是</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="adaptive-enabled-yn"><span class="text">否</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="adaptive-enabled-yn"><span class="text">Yes</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="adaptive-enabled-yn"><span class="text">No</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -220,8 +220,8 @@
 							</button>
 							<div class="dropdown-menu open">
 								<ul class="dropdown-menu custom-select inner" role="menu">
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="cover-backdrop-enabled-yn"><span class="text">是</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="cover-backdrop-enabled-yn"><span class="text">否</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="cover-backdrop-enabled-yn"><span class="text">Yes</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="cover-backdrop-enabled-yn"><span class="text">No</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -347,8 +347,8 @@
 							</button>
 							<div class="dropdown-menu open">
 								<ul class="dropdown-menu custom-select inner" role="menu">
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="extratag-display-yn"><span class="text">是</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="extratag-display-yn"><span class="text">否</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="extratag-display-yn"><span class="text">Yes</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="extratag-display-yn"><span class="text">No</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -370,8 +370,8 @@
 							</button>
 							<div class="dropdown-menu open">
 								<ul class="dropdown-menu custom-select inner" role="menu">
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="play-history-enabled-yn"><span class="text">是</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="play-history-enabled-yn"><span class="text">否</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="play-history-enabled-yn"><span class="text">Yes</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="play-history-enabled-yn"><span class="text">No</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -412,9 +412,9 @@
 							</button>
 							<div class="dropdown-menu open">
 								<ul class="dropdown-menu custom-select inner" role="menu">
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">禁用</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">电台闹钟</span></a></li>
-									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">睡眠定时</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">Disabled</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">Clock Radio</span></a></li>
+									<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-mode-sel"><span class="text">Sleep Timer</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -517,9 +517,9 @@
 								</button>
 								<div class="dropdown-menu open">
 									<ul class="dropdown-menu custom-select inner" role="menu">
-										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">无</span></a></li>
-										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">重启</span></a></li>
-										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">关机</span></a></li>
+										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">None</span></a></li>
+										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">Reboot</span></a></li>
+										<li class="modal-dropdown-text"><a href="#notarget" data-cmd="clockradio-action-sel"><span class="text">Shutdown</span></a></li>
 									</ul>
 								</div>
 							</div>

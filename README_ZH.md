@@ -1,5 +1,6 @@
 # moode_zh_cn([Eng](/README.md))
 MoOde 音乐播放器的中文化项目
+基于 MoOde 6.0.0修改 （必须是这个版本！！！）
 
 ## 如何使用
 

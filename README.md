@@ -1,5 +1,6 @@
 # moode_zh_cn([中文](/README_ZH.md))
 A MoOde Player Chinese translation Project
+Note: Mod for MoOde Player V6.0.0 (Must be this version!!!)
 
 ## How to use
 

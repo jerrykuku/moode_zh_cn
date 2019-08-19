@@ -2,6 +2,10 @@
 A MoOde Player Chinese translation Project  
 Note: Mod for MoOde Player V6.0.0 (Must be this version!!!)
 
+![](/screenshots/screenshot_1.png)
+![](/screenshots/screenshot_2.png)
+![](/screenshots/screenshot_3.png)
+
 ## How to use
 
 Connect to the Pi via SSH (user:pi password:moodeaudio) and then run the commands listed below.

@@ -2,6 +2,10 @@
 MoOde 音乐播放器的中文化项目  
 基于 MoOde 6.0.0修改 （必须是这个版本！！！）
 
+![](/screenshots/screenshot_1.png)
+![](/screenshots/screenshot_2.png)
+![](/screenshots/screenshot_3.png)
+
 ## 如何使用
 
 通过SSH 连接到Pi (用户名:pi 密码:moodeaudio) 然后运行以下代码。
